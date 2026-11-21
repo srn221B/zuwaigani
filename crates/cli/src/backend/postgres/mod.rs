@@ -9,7 +9,7 @@ use anyhow::{Context, Result, bail};
 use self::sql::Param;
 use super::{Backend, Measurement, SAMPLE_LIMIT};
 use crate::expectation::{Check, Expectation};
-use crate::platform::Platform;
+use zuwaigani_core::platform::Platform;
 
 pub struct PostgresBackend {
     client: RefCell<Client>,

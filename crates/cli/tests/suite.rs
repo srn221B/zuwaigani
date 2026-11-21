@@ -4,9 +4,9 @@ use std::path::{Path, PathBuf};
 
 use common::StubBackend;
 use zuwaigani::backend::Backend;
-use zuwaigani::platform::Platform;
 use zuwaigani::sources::Source;
 use zuwaigani::suite::Suite;
+use zuwaigani_core::platform::Platform;
 
 const SOURCES: &str = "sources:
   polars:

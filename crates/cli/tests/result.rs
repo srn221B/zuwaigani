@@ -1,20 +1,20 @@
 use zuwaigani::backend::Measurement;
 use zuwaigani::expectation::Expectation;
-use zuwaigani::platform::Platform;
-use zuwaigani::result::ExpectationResult;
+use zuwaigani::result::judge;
+use zuwaigani_core::platform::Platform;
 
 fn success(element_count: u64, unexpected_count: u64, mostly: Option<&str>) -> bool {
     let yaml = format!(
         "type: not_null\ncolumn: id\nplatform: [polars]\n{}",
         mostly.map_or(String::new(), |m| format!("mostly: {m}"))
     );
-    let e: Expectation = serde_yaml::from_str(&yaml).unwrap();
+    let e: Expectation = serde_yaml::from_str(&yaml).expect("test YAML is valid");
     let m = Measurement {
         element_count,
         unexpected_count,
         sample_unexpected: Vec::new(),
     };
-    ExpectationResult::judge(Platform::Polars, &e, m).success
+    judge(Platform::Polars, &e, m).success
 }
 
 #[test]

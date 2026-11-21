@@ -5,9 +5,9 @@ use serde::Deserialize;
 
 use crate::backend::{self, Backend};
 use crate::expectation::Expectation;
-use crate::platform::Platform;
-use crate::result::{ExpectationResult, ValidationReport};
+use crate::result::{self, ValidationReport};
 use crate::sources::{Source, Sources};
+use zuwaigani_core::platform::Platform;
 
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -104,7 +104,7 @@ impl Suite {
         for e in &self.expectations {
             for &p in e.platforms() {
                 let backend = backend_for(p)?;
-                results.push(ExpectationResult::judge(p, e, backend.measure(e)?));
+                results.push(result::judge(p, e, backend.measure(e)?));
             }
         }
 

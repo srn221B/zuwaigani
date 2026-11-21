@@ -1,27 +1,25 @@
-[package]
-name = "zuwaigani"
-version = "0.1.0"
-edition = "2024"
-
-[dependencies]
-anyhow = "1.0.104"
-clap = { version = "4.6.9", features = ["derive", "env"] }
-polars = { version = "0.55.2", features = ["lazy", "csv", "parquet", "is_in", "is_between", "strings", "regex", "is_unique"] }
-postgres = "0.19.14"
-serde = { version = "1.0.229", features = ["derive"] }
-serde_json = "1.0.154"
-serde_yaml = "0.9.34"
+[workspace]
+resolver = "3"
+members = ["crates/core", "crates/cli", "frontend"]
 
 [profile.dev]
 panic = "abort"
 
-[lints.rust]
+# Defines a size-optimized profile for the WASM bundle in release mode
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[workspace.lints.rust]
 unsafe_op_in_unsafe_fn = "warn"          # each unsafe op needs its own unsafe block
 missing_debug_implementations = "warn"   # every public type implements Debug
 unreachable_pub = "warn"                 # pub items that aren't actually exported
 rust_2018_idioms = { level = "warn", priority = -1 } # 2018-edition idioms, e.g. Formatter<'_>
 
-[lints.clippy]
+[workspace.lints.clippy]
 # Groups first, at lower priority so the individual settings below win.
 all = { level = "warn", priority = -1 }
 pedantic = { level = "warn", priority = -1 }

@@ -5,7 +5,7 @@ use anyhow::{Result, anyhow, bail};
 
 use super::{Backend, Measurement, SAMPLE_LIMIT};
 use crate::expectation::{Check, Expectation};
-use crate::platform::Platform;
+use zuwaigani_core::platform::Platform;
 
 pub struct PolarsBackend {
     lf: LazyFrame,

@@ -1,9 +1,21 @@
-name: check
+name: cli
 
 on:
   push:
     branches: [main]
+    paths:
+      - crates/**
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile
+      - .github/workflows/cli.yml
   pull_request:
+    paths:
+      - crates/**
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile
+      - .github/workflows/cli.yml
 
 permissions:
   contents: read

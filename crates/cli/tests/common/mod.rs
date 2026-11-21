@@ -1,7 +1,7 @@
 use anyhow::Result;
 use zuwaigani::backend::{Backend, Measurement};
 use zuwaigani::expectation::Expectation;
-use zuwaigani::platform::Platform;
+use zuwaigani_core::platform::Platform;
 
 pub(crate) struct StubBackend {
     pub platform: Platform,

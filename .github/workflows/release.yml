@@ -32,11 +32,11 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           key: ${{ matrix.target }}
-      - run: cargo build --release --locked --target "$TARGET"
+      - run: cargo build --release --locked -p zuwaigani --target "$TARGET"
       - name: Package
         run: |
           mkdir "$ARCHIVE"
-          cp "target/$TARGET/release/zuwaigani" README.md "$ARCHIVE/"
+          cp "target/$TARGET/release/zuwaigani" crates/cli/README.md "$ARCHIVE/"
           tar czf "$ARCHIVE.tar.gz" "$ARCHIVE"
           shasum -a 256 "$ARCHIVE.tar.gz" > "$ARCHIVE.tar.gz.sha256"
       - name: Upload to the release

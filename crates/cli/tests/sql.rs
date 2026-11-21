@@ -2,7 +2,7 @@ use zuwaigani::backend::postgres::sql::{Param, count_query, quote_ident, sample_
 use zuwaigani::expectation::Expectation;
 
 fn parse(yaml: &str) -> Expectation {
-    serde_yaml::from_str(&format!("{yaml}\nplatform: [postgres]")).unwrap()
+    serde_yaml::from_str(&format!("{yaml}\nplatform: [postgres]")).expect("test YAML is valid")
 }
 
 #[test]

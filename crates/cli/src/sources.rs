@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 use anyhow::{Context, Result};
 use serde::Deserialize;
 
-use crate::platform::Platform;
+use zuwaigani_core::platform::Platform;
 
 #[derive(Debug, Default, Deserialize)]
 #[serde(deny_unknown_fields)]

@@ -1,5 +1,5 @@
 use zuwaigani::expectation::Expectation;
-use zuwaigani::platform::Platform;
+use zuwaigani_core::platform::Platform;
 
 fn parse(yaml: &str) -> Result<Expectation, serde_yaml::Error> {
     serde_yaml::from_str(yaml)

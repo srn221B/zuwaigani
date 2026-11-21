@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-use crate::platform::{Platform, Platforms};
+use zuwaigani_core::platform::Platform;
 
 #[derive(Debug, Clone, Copy, Deserialize)]
 #[serde(try_from = "f64")]
@@ -15,6 +15,32 @@ impl TryFrom<f64> for Mostly {
         } else {
             Err(format!("mostly must be between 0.0 and 1.0: {v}"))
         }
+    }
+}
+
+#[derive(Debug, Clone, Deserialize)]
+#[serde(try_from = "Vec<Platform>")]
+struct Platforms(Vec<Platform>);
+
+impl Platforms {
+    fn as_slice(&self) -> &[Platform] {
+        &self.0
+    }
+}
+
+impl TryFrom<Vec<Platform>> for Platforms {
+    type Error = String;
+
+    fn try_from(platforms: Vec<Platform>) -> Result<Self, String> {
+        if platforms.is_empty() {
+            return Err("platform must list at least one platform".to_string());
+        }
+        for (i, p) in platforms.iter().enumerate() {
+            if platforms[..i].contains(p) {
+                return Err(format!("platform lists `{p}` more than once"));
+            }
+        }
+        Ok(Self(platforms))
     }
 }
 

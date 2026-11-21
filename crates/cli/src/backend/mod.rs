@@ -4,8 +4,8 @@ pub mod postgres;
 use anyhow::Result;
 
 use crate::expectation::{Check, Expectation};
-use crate::platform::Platform;
 use crate::sources::Source;
+use zuwaigani_core::platform::Platform;
 
 pub const SAMPLE_LIMIT: u32 = 5;
 
