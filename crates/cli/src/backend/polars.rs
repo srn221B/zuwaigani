@@ -5,6 +5,7 @@ use anyhow::{Result, anyhow, bail};
 
 use super::{Backend, Measurement, SAMPLE_LIMIT};
 use crate::expectation::{Check, Expectation};
+use zuwaigani_core::check::CheckKind;
 use zuwaigani_core::platform::Platform;
 
 pub struct PolarsBackend {
@@ -12,13 +13,13 @@ pub struct PolarsBackend {
 }
 
 #[must_use]
-pub fn supports(check: &Check) -> bool {
-    match check {
-        Check::NotNull {}
-        | Check::Unique {}
-        | Check::Between { .. }
-        | Check::InSet { .. }
-        | Check::MatchRegex { .. } => true,
+pub fn supports(kind: CheckKind) -> bool {
+    match kind {
+        CheckKind::NotNull
+        | CheckKind::Unique
+        | CheckKind::Between
+        | CheckKind::InSet
+        | CheckKind::MatchRegex => true,
     }
 }
 

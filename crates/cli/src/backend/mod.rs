@@ -3,8 +3,10 @@ pub mod postgres;
 
 use anyhow::Result;
 
-use crate::expectation::{Check, Expectation};
+use crate::expectation::Expectation;
 use crate::sources::Source;
+use zuwaigani_core::capabilities::Capabilities;
+use zuwaigani_core::check::CheckKind;
 use zuwaigani_core::platform::Platform;
 
 pub const SAMPLE_LIMIT: u32 = 5;
@@ -34,9 +36,14 @@ pub fn open(source: &Source) -> Result<Box<dyn Backend>> {
 }
 
 #[must_use]
-pub fn supports(platform: Platform, check: &Check) -> bool {
+pub fn supports(platform: Platform, kind: CheckKind) -> bool {
     match platform {
-        Platform::Polars => polars::supports(check),
-        Platform::Postgres => postgres::supports(check),
+        Platform::Polars => polars::supports(kind),
+        Platform::Postgres => postgres::supports(kind),
     }
+}
+
+#[must_use]
+pub fn capabilities() -> Capabilities {
+    Capabilities::build(supports)
 }

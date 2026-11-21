@@ -12,6 +12,18 @@ cargo run -- validate --suite samples/passing_suite.yml --output result.json
 
 Exit code: `0` all passed, `1` some expectation failed, `2` error.
 
+Show which checks each platform supports. `--json` prints the same data for other tools to read.
+
+```sh
+$ cargo run -- platforms
+check        polars  postgres
+not_null     yes     yes
+unique       yes     yes
+between      yes     yes
+in_set       yes     yes
+match_regex  yes     yes
+```
+
 ## Suite
 
 ```yaml

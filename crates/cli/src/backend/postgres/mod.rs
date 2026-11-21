@@ -8,7 +8,8 @@ use anyhow::{Context, Result, bail};
 
 use self::sql::Param;
 use super::{Backend, Measurement, SAMPLE_LIMIT};
-use crate::expectation::{Check, Expectation};
+use crate::expectation::Expectation;
+use zuwaigani_core::check::CheckKind;
 use zuwaigani_core::platform::Platform;
 
 pub struct PostgresBackend {
@@ -17,13 +18,13 @@ pub struct PostgresBackend {
 }
 
 #[must_use]
-pub fn supports(check: &Check) -> bool {
-    match check {
-        Check::NotNull {}
-        | Check::Unique {}
-        | Check::Between { .. }
-        | Check::InSet { .. }
-        | Check::MatchRegex { .. } => true,
+pub fn supports(kind: CheckKind) -> bool {
+    match kind {
+        CheckKind::NotNull
+        | CheckKind::Unique
+        | CheckKind::Between
+        | CheckKind::InSet
+        | CheckKind::MatchRegex => true,
     }
 }
 

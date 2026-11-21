@@ -42,7 +42,7 @@ impl Suite {
         }
         for e in &self.expectations {
             for &p in e.platforms() {
-                if !backend::supports(p, e.check()) {
+                if !backend::supports(p, e.check().kind()) {
                     bail!(
                         "{} (column: {}) is not supported on {p}",
                         e.name(),

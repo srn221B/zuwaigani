@@ -9,6 +9,10 @@ pub enum Platform {
     Postgres,
 }
 
+impl Platform {
+    pub const ALL: [Self; 2] = [Self::Polars, Self::Postgres];
+}
+
 impl fmt::Display for Platform {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(match self {

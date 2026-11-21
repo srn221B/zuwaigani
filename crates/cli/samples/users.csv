@@ -5,5 +5,5 @@ user_id,name,age,status,email
 4,Dave,150,active,dave_at_example.com
 5,Eve,41,banned,eve@example.com
 5,Frank,19,active,frank@example.com
-,Grace,52,inactive,grace@example.com
+2,Grace,52,inactive,grace@example.com
 8,Heidi,-3,active,heidi@example.com
