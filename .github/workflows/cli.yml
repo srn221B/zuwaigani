@@ -1,0 +1,34 @@
+name: cli
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - crates/**
+      - frontend/data/**
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile
+      - .github/workflows/cli.yml
+  pull_request:
+    paths:
+      - crates/**
+      - frontend/data/**
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile
+      - .github/workflows/cli.yml
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - run: make ci

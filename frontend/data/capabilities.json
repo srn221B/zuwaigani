@@ -1,0 +1,43 @@
+{
+  "platforms": [
+    "polars",
+    "postgres"
+  ],
+  "checks": [
+    {
+      "check": "not_null",
+      "supported_by": [
+        "polars",
+        "postgres"
+      ]
+    },
+    {
+      "check": "unique",
+      "supported_by": [
+        "polars",
+        "postgres"
+      ]
+    },
+    {
+      "check": "between",
+      "supported_by": [
+        "polars",
+        "postgres"
+      ]
+    },
+    {
+      "check": "in_set",
+      "supported_by": [
+        "polars",
+        "postgres"
+      ]
+    },
+    {
+      "check": "match_regex",
+      "supported_by": [
+        "polars",
+        "postgres"
+      ]
+    }
+  ]
+}

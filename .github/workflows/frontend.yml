@@ -1,0 +1,35 @@
+name: frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - frontend/**
+      - crates/core/**
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile
+      - .github/workflows/frontend.yml
+  pull_request:
+    paths:
+      - frontend/**
+      - crates/core/**
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile
+      - .github/workflows/frontend.yml
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - run: make frontend-ci
