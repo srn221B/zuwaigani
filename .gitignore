@@ -1,0 +1,5 @@
+/target
+.DS_Store
+/result.json
+.claude/settings.local.json
+skills-lock.json

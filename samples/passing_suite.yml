@@ -1,0 +1,18 @@
+name: passing_suite
+sources:
+  polars:
+    path: users.csv
+expectations:
+  - type: not_null
+    platform: [polars]
+    column: name
+  - type: between
+    platform: [polars]
+    column: age
+    min: -10
+    max: 200
+  - type: in_set
+    platform: [polars]
+    column: status
+    values: [active, inactive]
+    mostly: 0.8

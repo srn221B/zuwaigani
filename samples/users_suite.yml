@@ -1,0 +1,36 @@
+name: users_suite
+sources:
+  polars:
+    path: users.csv
+  postgres:
+    url_env: DATABASE_URL
+    table: users
+expectations:
+  - type: not_null
+    platform: [polars, postgres]
+    column: user_id
+
+  - type: unique
+    platform: [polars, postgres]
+    column: user_id
+
+  - type: not_null
+    platform: [polars]
+    column: age
+    mostly: 0.8 # pass if at least 80% are non-null
+
+  - type: between
+    platform: [polars]
+    column: age
+    min: 0
+    max: 120
+
+  - type: in_set
+    platform: [polars]
+    column: status
+    values: [active, inactive]
+
+  - type: match_regex
+    platform: [polars]
+    column: email
+    pattern: '^[^@\s]+@[^@\s]+\.[a-z]+$'
