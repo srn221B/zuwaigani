@@ -13,7 +13,7 @@ The CLI and the frontend never depend on each other, only on `crates/core`.
 ## CLI Usecase
 
 ```sh
-$ zuwaigani validate --suite samples/users_suite.yml
+$ zuwaigani validate --suite crates/cli/samples/users_suite.yml 
 suite: users_suite
   **NG** polars    expect_column_values_to_be_unique        user_id      unexpected 2/7 (28.57%)
       example: 5, 5
@@ -33,5 +33,7 @@ TODO(mermaid)
 make ci            # CLI and core: fmt, clippy, tests
 make frontend-ci   # frontend: ssr and wasm builds
 make frontend-dev  # frontend: dev server with hot reload (http://127.0.0.1:3000)
+make capabilities  # regenerate frontend/data/capabilities.json after changing what a platform supports
+make daisyui       # fetch the daisyUI plugin pinned in the Makefile (frontend/style/daisyui.mjs)
 make deploy        # install the zuwaigani command
 ```

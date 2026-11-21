@@ -1123,8 +1123,10 @@ dependencies = [
  "leptos_axum",
  "leptos_meta",
  "leptos_router",
+ "serde_json",
  "tokio",
  "wasm-bindgen",
+ "zuwaigani-core",
 ]
 
 [[package]]
@@ -5310,4 +5312,5 @@ name = "zuwaigani-core"
 version = "0.1.0"
 dependencies = [
  "serde",
+ "serde_json",
 ]
